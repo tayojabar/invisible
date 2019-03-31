@@ -1,6 +1,6 @@
 const request = require('request')
 const apiKey = '04242c837455d4d779c1d8ebd87c1f54'
-let locations = [94040, 'Toronto', 'Portland', 'Oregon', 'Lagos']
+let locations = ["./weather New York", 10005, "Tokyo", "Sao Paulo", "Pluto"]
 
 function unixToDatetime(timestamp){
     const date = new Date(timestamp*1000)
@@ -20,7 +20,7 @@ for (let i = 0; i < locations.length; i++){
             return error
         } else {
             let information = JSON.parse(body)
-            let message = 'It is ' +information.main.temp+ ' degrees in '+information.name+' and the time is '+unixToDatetime(information.dt);
+            let message = (information.cod === '404') ? 'Sorry, there is no information for this location!': 'It is ' +information.main.temp+ ' degrees in '+information.name+' and the time is '+unixToDatetime(information.dt);
             console.log(message)
         }
     });
